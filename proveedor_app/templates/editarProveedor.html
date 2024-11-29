@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Proveedor</h2>
+        <!-- Aquí codigo tarjeta -->
+
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="/editarProveedor/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" value="{{misproveedores.codigo}}" minlength="1" maxlength="6" readonly required>
+                    </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misproveedores.nombre}}" maxlength="100" required>
+                        </div>
+                    
+                    <div class="form-group py-1">
+                        <input type="text" id="txtproductos" name="txtproductos" class="form-control" minlength="1" maxlength="9" value="{{misproveedores.productos}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" value="{{misproveedores.direccion}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txttelefono" name="txttelefono" class="form-control" minlength="1" maxlength="9" value="{{misproveedores.telefono}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txtfrecuencia" name="txtfrecuencia" class="form-control" minlength="1" maxlength="9" value="{{misproveedores.frecuencia}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txtpagos" name="txtpagos" class="form-control" minlength="1" maxlength="9" value="{{misproveedores.pagos}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Proveedor</button>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+
+        <!-- Aquí codigo tarjeta -->
+    </div> 
+</div> <!-- Fila en editar-->
+
+{% endblock %}
