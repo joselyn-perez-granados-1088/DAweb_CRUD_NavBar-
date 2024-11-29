@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+
+<div class="row"> <!--La fila-->
+    
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna Izquierda-->
+        <h1>Empleado</h1>
+
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="registrarEmpleado/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                        <input type="text" id="txtcodigo" name="txtcodigo" class="form-control" placeholder="Codigo Empleado" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtnombre" name="txtnombre" class="form-control" placeholder="Nombre Empleado" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="text" id="txtcargo" name="txtcargo" class="form-control" placeholder="Cargo Empleado" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="text" id="txthorario" name="txthorario" class="form-control" placeholder="Horario Empleado" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="text" id="txtsalario" name="txtsalario" class="form-control" placeholder="Salario Empleado" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="text" id="txtcertificaciones" name="txtcertificaciones" class="form-control" placeholder="Certificaciones Empleado" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="text" id="txtexperiencia" name="txtexperiencia" class="form-control" placeholder="Experiencia Empleado" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Empleado</button>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+
+    </div> <!-- Columna Izquierda-->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+        <h1>Listado de Empleados</h1>
+        <img class="w-50" src="{% static 'img/mascota6.jpg' %}"alt="joselyn" width="100" height="200">
+        <!-- La tabla -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Código</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Horario</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Experiencia</th>
+                    <th scope="col">Certificaciones</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in misempleados %}
+                    <tr>
+                        <td> {{forloop.counter}} </td>
+                        <td> {{m.codigo}} </td>
+                        <td> {{m.nombre}} </td>
+                        <td> {{m.cargo}} </td>
+                        <td> {{m.horario}} </td>
+                        <td> {{m.salario}} </td>
+                        <td> {{m.experiencia}} </td>
+                        <td> {{m.certificaciones}} </td>
+                        <td><a href="seleccionarEmpleado/{{m.codigo}}" class="btn btn-secondary">Editar</a></td> <!-- Falta -->
+                        <td><a href="borrarEmpleado/{{m.codigo}}" class="btn btn-dark">Borrar</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+    <!-- La tabla -->
+    </div> <!-- Columna derecha -->
+
+</div> <!--La fila-->
+{% endblock %}
