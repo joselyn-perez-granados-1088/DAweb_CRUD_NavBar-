@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+
+<div class="row"> <!--La fila-->
+    
+    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"> <!-- Columna Izquierda-->
+        <h1>Venta</h1>
+
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="/registrarVenta/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                        <input type="text" id="txtfactura" name="txtfactura" class="form-control" placeholder="Codigo de factura" minlength="1" maxlength="6" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtidcliente" name="txtidcliente" class="form-control" placeholder="Codigo de comprador" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtproducto" name="txtproducto" class="form-control" placeholder="Productos comprados" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtempleado" name="txtempleado" class="form-control" placeholder="Vendedor" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-3">
+                            <input type="date" id="txtfecha" name="txtfecha" class="form-control" placeholder="Fecha de compra" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtcantidad" name="txtcantidad" class="form-control" placeholder="Total" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtmetodo" name="txtmetodo" class="form-control" placeholder="Metodo de pago" maxlength="100" required>
+                        </div>
+
+                    <div class="form-group py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Venta</button>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+
+    </div> <!-- Columna Izquierda-->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8"> <!-- Columna derecha -->
+        <h1>Listado de Ventas</h1>
+        <img class="w-50" src="{% static 'img/mascota5.jpg' %}"alt="joselyn" width="100" height="200">
+        <!-- La tabla -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Factura</th>
+                    <th scope="col">Id cliente</th>
+                    <th scope="col">Id producto</th>
+                    <th scope="col"> Empleado</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Metodo</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in misventas %}
+                    <tr>
+                        <td> {{forloop.counter}} </td>
+                        <td> {{m.factura}} </td>
+                        <td> {{m.idcliente}} </td>
+                        <td> {{m.producto}} </td>
+                        <td> {{m.empleado}} </td>
+                        <td> {{m.fecha | date:'d-m-y'}} </td>
+                        <td> {{m.cantidad}} </td>
+                        <td> {{m.metodo}} </td>
+                        <td><a href="seleccionarVenta/{{m.factura}}" class="btn btn-secondary">Editar</a></td> <!-- Falta -->
+                        <td><a href="borrarVenta/{{m.factura}}" class="btn btn-dark">Borrar</a></td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+    <!-- La tabla -->
+    </div> <!-- Columna derecha -->
+
+</div> <!--La fila-->
+{% endblock %}

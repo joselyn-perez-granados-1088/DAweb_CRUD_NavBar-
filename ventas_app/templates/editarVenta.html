@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+
+<div class="row"> <!-- Fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Venta</h2>
+        <!-- Aquí codigo tarjeta -->
+
+        <div class="card"> <!-- La tarjeta -->
+            <div class="card-body">
+                <form action="/editarVenta/" method="POST"> {% csrf_token %} <!-- Falta action -->
+                    <div class="form-group">
+                        <input type="text" id="txtfactura" name="txtfactura" class="form-control" value="{{misventas.factura}}" minlength="1" maxlength="6" readonly required>
+                    </div>
+
+                    <div class="form-group py-3">
+                            <input type="text" id="txtidcliente" name="txtidcliente" class="form-control" value="{{misventas.idcliente}}" maxlength="100" required>
+                        </div>
+                    
+                    <div class="form-group py-1">
+                        <input type="text" id="txtproducto" name="txtproducto" class="form-control" minlength="1" maxlength="9" value="{{misventas.producto}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtempleado" name="txtempleado" class="form-control" value="{{misventas.empleado}}" maxlength="100" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txtfecha" name="txtfecha" class="form-control" minlength="1" maxlength="10" value="{{misventas.fecha}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txtcantidad" name="txtcantidad" class="form-control" minlength="1" maxlength="100" value="{{misventas.cantidad}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <input type="text" id="txtmetodo" name="txtmetodo" class="form-control" minlength="1" maxlength="9" value="{{misventas.metodo}}" required>
+                    </div>
+
+                    <div class="form-group py-1">
+                        <button type="submit" class="btn btn-dark">Guardar Venta</button>
+                    </div>
+                </form>
+            </div>
+        </div> <!-- La tarjeta -->
+
+        <!-- Aquí codigo tarjeta -->
+    </div> 
+</div> <!-- Fila en editar-->
+
+{% endblock %}
